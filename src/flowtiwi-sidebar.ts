@@ -1,55 +1,24 @@
 import type { IReactWidget } from 'tw-react';
 
 const Widget = (require('$:/plugins/linonetwo/tw-react/widget.js') as { widget: IReactWidget }).widget;
-import type * as ReactType from 'react';
-type ReactType = typeof ReactType;
-import type * as ReactDomType from 'react-dom';
-type ReactDomType = typeof ReactDomType;
+import { IMultiColumnProps, MultiColumn } from './components/multi-column';
 
-// you should set these to external in your build tool like `external: ['$:/*', 'react', 'react-dom'],`
-const ReactDom: ReactDomType = require('react-dom');
-const React: ReactType = require('react');
-
-const e = React.createElement;
-
-interface IProps {
-  /**
-   * Tiddler to contain the serialized JSON component state
-   */
-  stateTiddler: string;
-}
-interface IState {
-  liked: boolean;
-}
-class LikeButton extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    const defaultState: IState = { liked: false };
-    // deserialize state from tiddlywiki
+class LikeButtonWidget extends Widget<IMultiColumnProps> {
+  reactComponent = MultiColumn;
+  getProps = () => {
+    const stateTiddler = this.getAttribute('stateTiddler', '$:/plugins/linonetwo/flowtiwi-sidebar/state');
+    const layoutsRaw = $tw.wiki.getTiddlerText(stateTiddler) ?? '[]';
+    let layouts: ReactGridLayout.Layouts = {};
     try {
-      this.state = JSON.parse($tw.wiki.getTiddlerText(this.props.stateTiddler, '{}')) ?? defaultState;
-    } catch {
-      this.state = defaultState;
+      layouts = JSON.parse(layoutsRaw) as ReactGridLayout.Layouts;
+    } catch (error) {
+      console.error(
+        `$:/plugins/linonetwo/flowtiwi-sidebar Error: JSON.parse(layoutsRaw) failed, layoutsRaw is ${layoutsRaw} ${(error as Error).message} ${
+          (error as Error).stack
+        }`,
+      );
     }
-  }
-
-  setState(nextState: IState) {
-    super.setState(nextState);
-    // serialize state to tiddlywiki
-    $tw.wiki.setText(this.props.stateTiddler, 'text', undefined, JSON.stringify(nextState));
-  }
-
-  render() {
-    if (this.state.liked) {
-      return 'You liked this.';
-    }
-
-    return e('button', { onClick: () => this.setState({ liked: true }) }, 'Like');
-  }
-}
-
-class LikeButtonWidget extends Widget {
-  reactComponent = LikeButton;
-  getProps = () => ({ stateTiddler: this.getAttribute('stateTiddler') });
+    return { layouts };
+  };
 }
 exports.likeButtonExampleWidget = LikeButtonWidget;
