@@ -1,20 +1,18 @@
 # Typescript plugin template for TiddlyWiki5
 
-This template will help you automatically package zipped multiple-file plugin for nodejs wiki, and single file JSON plugin for HTML wiki.
+Enhanced multi-column sidebar gives you Flow in TiddlyWiki. 强大的多栏侧边栏让你在太微里享受心流。
 
-## What need to change after apply the template
+## Design 设计思路
 
-### Basic
+知识充满上下文，但人脑的工作记忆有限，因此在通过人机交互录入和提取知识时，为了让这个赛博协同系统维持高效，我们需要机器提供动态化侧边栏这样的界面展示实时上下文，辅助系统的人类部分低成本获取上下文。不同的工作类型需要不同种类、数量的上下文，所以侧边栏需要能通过人类交互、自动化接口实时对各上下文的展示区域大小、内容范围进行调整，来让工作尽可能不受到工作记忆的限制。
 
-1. update `title`, `author` and `description` in the [src/plugin.info](src/plugin.info), update `url` field in the [package.json](package.json).
-1. write your plugin code in the [src/](src/) directory, use `index.ts` as your ts code's entry point.
-1. other tid files just put in the src directory, they will be copy to the plugin automatically.
-   1. You can use folder to organize the files, like `src/filters/` to place the filter tiddlers, and that structure will be preserved in the nodejs multiple-file plugin
-   1. In the JSON plugin, the structure will strictly follow the tiddler title.
-1. update demo site tiddlers in the [demo/](demo/) directory.
-1. update this readme.md
+Knowledge is full of context, but the human brain has a limited working memory, so in order to keep this Cybersyn efficient when I/O knowledge through human-computer interface, we need the machine to provide an interface such as a dynamic sidebar to display real-time context to assist the human part of the system in obtaining context at low cost. Different types of work require different types and amounts of context, so the sidebar needs to be able to adjust the size of the display area and the content of area in real time through human interaction and automation API, to make the work unconstrained from the working memory.
 
-## During development
+Translated with www.DeepL.com/Translator (free version)
+
+## Usage
+
+## Development
 
 There are some scripts you can run to boost your development.
 
@@ -24,24 +22,3 @@ After `npm i --legacy-peer-deps`:
 - `npm run dev` to pack the plugin in the `dist/` directory.
 
 You will need `--legacy-peer-deps` when `npm i` if you are using latest nodejs. This is a bug in npm.
-
-### Add a second ts file
-
-Add new file name (without `.ts`) to `package.json`'s `tsFiles` field. And build script will read it and compile files in it.
-
-## After the plugin is complete
-
-### Publish
-
-Enable github action in your repo (in your github repo - setting - action - general) if it is not allowed, and when you tagging a new version `vx.x.x` in a git commit and push, it will automatically publish to the github release.
-
-### Demo
-
-You will get a Github Pages demo site automatically after publish. If it is 404, you may need to manually enable Github Pages in your github repo:
-
-Settings - Pages (on left side) - Source - choose `gh-pages` branch
-
-## Examples
-
-- https://github.com/tiddly-gittly/tw-react
-- https://github.com/tiddly-gittly/slate-write
