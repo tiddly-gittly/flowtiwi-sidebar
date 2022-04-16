@@ -35,7 +35,7 @@ jobs:
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
-          # here we replace "title": "$:/plugins/linonetwo/tw-example-plugin", to "title": "linonetwo/tw-example-plugin",
+          # here we replace "title": "$:/plugins/linonetwo/flowtiwi-sidebar", to "title": "linonetwo/flowtiwi-sidebar",
           # so it can be used in tiddly-gittly/tw5-plugin-packer to find output path
           content="${content//$\:\/plugins\//}"
           # end of optional handling for multi line json
