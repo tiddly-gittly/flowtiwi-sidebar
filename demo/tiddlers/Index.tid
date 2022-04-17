@@ -2,5 +2,3 @@ title: Index
 type: text/vnd.tiddlywiki
 
 {{$:/snippets/minilanguageswitcher}}
-
-<$flowTiWi />

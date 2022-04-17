@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useFilter } from 'tw-react';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { useDebouncedCallback } from 'beautiful-react-hooks';
@@ -18,12 +18,26 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
   const debouncedOnChange = useDebouncedCallback(props.onChange, [], 1000);
   const onLayoutChange = (layout: ReactGridLayout.Layout[]) => {
     const newAllLayouts = { ...allLayouts, [currentBreakpoint]: layout };
+    // DEBUG: console
+    console.log(`newAllLayouts`, newAllLayouts);
     setAllLayouts(newAllLayouts);
     debouncedOnChange(newAllLayouts);
   };
+  const sidebarTabTitles = useFilter('[all[shadows+tiddlers]tag[$:/tags/SideBar]!has[draft.of]]');
+  const sidebarTabContentHTMLs = useMemo(() => {
+    return sidebarTabTitles.map((title) => {
+      const contentHTML = $tw.wiki.renderTiddler('text/html', title);
+      return { key: title, __html: contentHTML };
+    });
+  }, [sidebarTabTitles]);
+  const gridChildren = sidebarTabContentHTMLs.map(({ key, __html }) => {
+    return <div key={key}>
+      <div className='flowtiwi-sidebar-content' dangerouslySetInnerHTML={{ __html }} />
+    </div>;
+  });
   return (
     <ResponsiveGridLayout
-      className="layout"
+      className="layout tc-sidebar-tabs-main"
       onLayoutChange={onLayoutChange}
       onBreakpointChange={(breakpoint, _newCols) => {
         setCurrentBreakpoint(breakpoint);
@@ -31,9 +45,7 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
       layouts={allLayouts}
       breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
       cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}>
-      <div key="1">1</div>
-      <div key="2">2</div>
-      <div key="3">3</div>
+      {gridChildren}
     </ResponsiveGridLayout>
   );
 }
