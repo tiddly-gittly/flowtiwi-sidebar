@@ -1,6 +1,7 @@
 import type { IReactWidget } from 'tw-react';
 
 import { IMultiColumnProps, MultiColumn } from './components/multi-column';
+import './style.css';
 
 const Widget = (require('$:/plugins/linonetwo/tw-react/widget.js') as { widget: IReactWidget }).widget;
 
