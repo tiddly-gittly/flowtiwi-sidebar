@@ -3,4 +3,6 @@ type: text/vnd.tiddlywiki
 
 {{$:/snippets/minilanguageswitcher}}
 
-[[https://github.com/tiddly-gittly/flowtiwi-sidebar]]
+[[Github SourceCode|https://github.com/tiddly-gittly/flowtiwi-sidebar]]
+
+[[StateTiddler|$:/plugins/linonetwo/flowtiwi-sidebar/state]]

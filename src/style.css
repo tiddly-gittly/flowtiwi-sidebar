@@ -1,8 +1,20 @@
-.flowtiwi-sidebar-content {
-  height: 100%;
+.flowtiwi-sidebar-tab-content {
+  height: calc(100% - 1.5em);
   overflow: hidden;
+
+  padding-left: 5px;
 }
-.flowtiwi-sidebar-content:hover {
+.flowtiwi-sidebar-tab-content:hover {
   overflow: auto;
   overflow: overlay;
+}
+.flowtiwi-sidebar-tab-handle {
+  user-select: none;
+  cursor: grabbing;
+  text-overflow: ellipsis;
+
+  height: 1.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-left: 5px;
 }
