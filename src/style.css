@@ -1,0 +1,8 @@
+.flowtiwi-sidebar-content {
+  height: 100%;
+  overflow: hidden;
+}
+.flowtiwi-sidebar-content:hover {
+  overflow: auto;
+  overflow: overlay;
+}
