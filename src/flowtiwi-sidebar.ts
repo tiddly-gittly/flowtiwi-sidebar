@@ -8,11 +8,11 @@ class FlowTiWiWidget extends Widget<IMultiColumnProps> {
   reactComponent = MultiColumn;
   getProps = () => {
     const stateTiddler = this.getAttribute('stateTiddler', '$:/plugins/linonetwo/flowtiwi-sidebar/state');
-    const layouts: ReactGridLayout.Layouts = $tw.wiki.getTiddlerData(stateTiddler, {})
+    const layouts: ReactGridLayout.Layouts = $tw.wiki.getTiddlerData(stateTiddler, {});
     const onChange = (newLayouts: ReactGridLayout.Layouts) => {
       $tw.wiki.setTiddlerData(stateTiddler, newLayouts);
-    }
-    return { layouts, onChange };
+    };
+    return { layouts, onChange, defaultItemLayout: { w: 2 } };
   };
 }
 
