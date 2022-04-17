@@ -53,7 +53,7 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
       {({ size }) =>
         size.width ? (
           <Responsive
-            draggableHandle="flowtiwi-sidebar-tab-handle"
+            draggableHandle=".flowtiwi-sidebar-tab-handle"
             width={size.width}
             className="layout tc-sidebar-tabs-main"
             onLayoutChange={onLayoutChange}
