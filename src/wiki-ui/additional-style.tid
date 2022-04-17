@@ -1,0 +1,7 @@
+title: $:/themes/linonetwo/flowtiwi-sidebar/additional-style
+tags: $:/tags/Stylesheet
+type: text/vnd.tiddlywiki
+
+.flowtiwi-sidebar-tab-handle {
+  background: <<colour button-background>>
+}

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, forwardRef } from 'react';
 import { useFilter } from 'tw-react';
 import { SizeMe } from 'react-sizeme';
 import { Responsive, WidthProvider } from 'react-grid-layout';
@@ -41,7 +41,8 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
       sidebarTabContentHTMLs.map(({ key, __html }) => {
         return (
           <div key={key}>
-            <div className="flowtiwi-sidebar-content" dangerouslySetInnerHTML={{ __html }} />
+            <div className="flowtiwi-sidebar-tab-handle">{key}</div>
+            <div className="flowtiwi-sidebar-tab-content" dangerouslySetInnerHTML={{ __html }} />
           </div>
         );
       }),
@@ -52,6 +53,7 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
       {({ size }) =>
         size.width ? (
           <Responsive
+            draggableHandle="flowtiwi-sidebar-tab-handle"
             width={size.width}
             className="layout tc-sidebar-tabs-main"
             onLayoutChange={onLayoutChange}
@@ -59,8 +61,10 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
               setCurrentBreakpoint(breakpoint);
             }}
             layouts={allLayouts}
+            isBounded
             breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
             cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+            margin={[0, 0]}
             autoSize>
             {gridChildren}
           </Responsive>
