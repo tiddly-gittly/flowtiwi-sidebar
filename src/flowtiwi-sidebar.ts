@@ -1,9 +1,10 @@
 import type { IReactWidget } from 'tw-react';
 
-const Widget = (require('$:/plugins/linonetwo/tw-react/widget.js') as { widget: IReactWidget }).widget;
 import { IMultiColumnProps, MultiColumn } from './components/multi-column';
 
-class LikeButtonWidget extends Widget<IMultiColumnProps> {
+const Widget = (require('$:/plugins/linonetwo/tw-react/widget.js') as { widget: IReactWidget }).widget;
+
+class FlowTiWiWidget extends Widget<IMultiColumnProps> {
   reactComponent = MultiColumn;
   getProps = () => {
     const stateTiddler = this.getAttribute('stateTiddler', '$:/plugins/linonetwo/flowtiwi-sidebar/state');
@@ -21,4 +22,5 @@ class LikeButtonWidget extends Widget<IMultiColumnProps> {
     return { layouts };
   };
 }
-exports.likeButtonExampleWidget = LikeButtonWidget;
+
+exports.flowTiWi = FlowTiWiWidget;
