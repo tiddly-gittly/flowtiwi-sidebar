@@ -6,6 +6,8 @@ import { useDebouncedCallback } from 'beautiful-react-hooks';
 
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
+import { SideBarContent } from './content';
+import { Tiddler } from 'tiddlywiki';
 
 export interface IMultiColumnProps {
   layouts: ReactGridLayout.Layouts;
@@ -30,24 +32,20 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
     debouncedOnChange(newAllLayouts);
   };
   const sidebarTabTitles = useFilter('[all[shadows+tiddlers]tag[$:/tags/SideBar]!has[draft.of]]');
-  const sidebarTabContentHTMLs = useMemo(() => {
-    return sidebarTabTitles.map((title) => {
-      const contentHTML = $tw.wiki.renderTiddler('text/html', title);
-      return { key: title, __html: contentHTML };
-    });
-  }, [sidebarTabTitles]);
   const gridChildren = useMemo(
     () =>
-      sidebarTabContentHTMLs.map(({ key, __html }) => {
+      sidebarTabTitles.map((title) => {
+        const tiddler = $tw.wiki.getTiddler<{ fields: { caption: string } } & Tiddler>(title);
         return (
-          <div key={key}>
-            <div className="flowtiwi-sidebar-tab-handle">{key}</div>
-            <div className="flowtiwi-sidebar-tab-content" dangerouslySetInnerHTML={{ __html }} />
+          <div key={title}>
+            <div className="flowtiwi-sidebar-tab-handle">{tiddler?.fields?.caption ?? title}</div>
+            <SideBarContent title={title} />
           </div>
         );
       }),
     [sidebarTabTitles],
   );
+
   return (
     <SizeMe>
       {({ size }) =>
