@@ -34,7 +34,7 @@
     "esbuild-plugin-browserslist": "0.4.9",
     "eslint": "8.13.0",
     "eslint-config-prettier": "8.5.0",
-    "eslint-config-standard": "16.0.3",
+    "eslint-config-standard": "17.0.0",
     "eslint-config-standard-with-typescript": "21.0.1",
     "eslint-import-resolver-alias": "1.1.2",
     "eslint-import-resolver-typescript": "2.7.1",
