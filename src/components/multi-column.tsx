@@ -1,18 +1,21 @@
-import React, { useMemo, useState, forwardRef } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useFilter } from 'tw-react';
 import { SizeMe } from 'react-sizeme';
-import { Responsive, WidthProvider } from 'react-grid-layout';
+import { Tiddler, Widget } from 'tiddlywiki';
+import { Responsive } from 'react-grid-layout';
 import { useDebouncedCallback } from 'beautiful-react-hooks';
 
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import { SideBarContent } from './content';
-import { Tiddler } from 'tiddlywiki';
+import { ParentWidgetContext } from './useRenderTiddler';
+
 
 export interface IMultiColumnProps {
   layouts: ReactGridLayout.Layouts;
   onChange: (newLayouts: ReactGridLayout.Layouts) => any;
   defaultItemLayout?: Partial<ReactGridLayout.Layout>;
+  parentWidget?: Widget;
 }
 export function MultiColumn(props: IMultiColumnProps): JSX.Element {
   const [currentBreakpoint, setCurrentBreakpoint] = useState('xxs');
@@ -47,29 +50,31 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
   );
 
   return (
-    <SizeMe>
-      {({ size }) =>
-        size.width ? (
-          <Responsive
-            draggableHandle=".flowtiwi-sidebar-tab-handle"
-            width={size.width}
-            className="layout tc-sidebar-tabs-main"
-            onLayoutChange={onLayoutChange}
-            onBreakpointChange={(breakpoint, _newCols) => {
-              setCurrentBreakpoint(breakpoint);
-            }}
-            layouts={allLayouts}
-            isBounded
-            breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-            cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-            margin={[0, 0]}
-            autoSize>
-            {gridChildren}
-          </Responsive>
-        ) : (
-          <div />
-        )
-      }
-    </SizeMe>
+    <ParentWidgetContext.Provider value={props.parentWidget}>
+      <SizeMe>
+        {({ size }) =>
+          size.width ? (
+            <Responsive
+              draggableHandle=".flowtiwi-sidebar-tab-handle"
+              width={size.width}
+              className="layout tc-sidebar-tabs-main"
+              onLayoutChange={onLayoutChange}
+              onBreakpointChange={(breakpoint, _newCols) => {
+                setCurrentBreakpoint(breakpoint);
+              }}
+              layouts={allLayouts}
+              isBounded
+              breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+              cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+              margin={[0, 0]}
+              autoSize>
+              {gridChildren}
+            </Responsive>
+          ) : (
+            <div />
+          )
+        }
+      </SizeMe>
+    </ParentWidgetContext.Provider>
   );
 }

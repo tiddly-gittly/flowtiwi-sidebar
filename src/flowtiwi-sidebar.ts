@@ -6,6 +6,10 @@ import './style.css';
 const Widget = (require('$:/plugins/linonetwo/tw-react/widget.js') as { widget: IReactWidget }).widget;
 
 class FlowTiWiWidget extends Widget<IMultiColumnProps> {
+  // refresh() {
+  //   return true;
+  // }
+
   reactComponent = MultiColumn;
   getProps = () => {
     const stateTiddler = this.getAttribute('stateTiddler', '$:/plugins/linonetwo/flowtiwi-sidebar/state');
@@ -13,7 +17,7 @@ class FlowTiWiWidget extends Widget<IMultiColumnProps> {
     const onChange = (newLayouts: ReactGridLayout.Layouts) => {
       $tw.wiki.setTiddlerData(stateTiddler, newLayouts);
     };
-    return { layouts, onChange, defaultItemLayout: { w: 2 } };
+    return { layouts, onChange, defaultItemLayout: { w: 2 }, parentWidget: this };
   };
 }
 
