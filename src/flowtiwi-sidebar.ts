@@ -1,3 +1,4 @@
+import { IChangedTiddlers } from 'tiddlywiki';
 import type { IReactWidget } from 'tw-react';
 
 import { IMultiColumnProps, MultiColumn } from './components/multi-column';
@@ -6,9 +7,9 @@ import './style.css';
 const Widget = (require('$:/plugins/linonetwo/tw-react/widget.js') as { widget: IReactWidget }).widget;
 
 class FlowTiWiWidget extends Widget<IMultiColumnProps> {
-  // refresh() {
-  //   return true;
-  // }
+  refresh(changedTiddlers: IChangedTiddlers) {
+    return this.refreshChildren(changedTiddlers);
+  }
 
   reactComponent = MultiColumn;
   getProps = () => {
