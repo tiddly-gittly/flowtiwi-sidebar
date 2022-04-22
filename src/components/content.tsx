@@ -1,5 +1,5 @@
-import React, { createRef } from "react";
-import { useRenderTiddler } from "./useRenderTiddler";
+import React, { createRef } from 'react';
+import { useRenderTiddler } from 'tw-react';
 
 export function SideBarContent(props: { title: string }): JSX.Element {
   const tabContentRef = createRef<HTMLDivElement>();

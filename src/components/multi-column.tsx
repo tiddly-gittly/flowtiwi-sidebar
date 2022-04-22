@@ -8,7 +8,7 @@ import { useDebouncedCallback } from 'beautiful-react-hooks';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import { SideBarContent } from './content';
-import { ParentWidgetContext } from './useRenderTiddler';
+import { ParentWidgetContext } from 'tw-react';
 
 
 export interface IMultiColumnProps {
