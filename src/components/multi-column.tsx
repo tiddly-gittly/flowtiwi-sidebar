@@ -10,7 +10,6 @@ import 'react-resizable/css/styles.css';
 import { SideBarContent } from './content';
 import { ParentWidgetContext } from 'tw-react';
 
-
 export interface IMultiColumnProps {
   layouts: ReactGridLayout.Layouts;
   onChange: (newLayouts: ReactGridLayout.Layouts) => any;
@@ -39,9 +38,13 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
     () =>
       sidebarTabTitles.map((title) => {
         const tiddler = $tw.wiki.getTiddler<{ fields: { caption: string } } & Tiddler>(title);
+        const renderedCaption = $tw.wiki.renderText('text/plain', 'text/vnd.tiddlywiki', tiddler?.fields?.caption ?? title, {
+          parseAsInline: true,
+          parentWidget: props.parentWidget,
+        });
         return (
           <div key={title}>
-            <div className="flowtiwi-sidebar-tab-handle">{tiddler?.fields?.caption ?? title}</div>
+            <div className="flowtiwi-sidebar-tab-handle">{renderedCaption}</div>
             <SideBarContent title={title} />
           </div>
         );
