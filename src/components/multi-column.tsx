@@ -10,6 +10,10 @@ import 'react-resizable/css/styles.css';
 import { SideBarContent } from './content';
 import { ParentWidgetContext } from 'tw-react';
 
+const defaultBreakpoints = { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 };
+const defaultCols = { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 };
+const defaultMargin = [0, 0] as [number, number];
+
 export interface IMultiColumnProps {
   layouts: ReactGridLayout.Layouts;
   onChange: (newLayouts: ReactGridLayout.Layouts) => any;
@@ -17,19 +21,9 @@ export interface IMultiColumnProps {
   parentWidget?: Widget;
 }
 export function MultiColumn(props: IMultiColumnProps): JSX.Element {
-  const [currentBreakpoint, setCurrentBreakpoint] = useState('xxs');
   const [allLayouts, setAllLayouts] = useState(props.layouts);
   const debouncedOnChange = useDebouncedCallback(props.onChange, [], 1000);
-  const onLayoutChange = (layout: ReactGridLayout.Layout[]) => {
-    const newAllLayouts = { ...allLayouts, [currentBreakpoint]: layout };
-    /** is first created layout, we will apply some default value to it */
-    const isNewLayout = allLayouts[currentBreakpoint] === undefined;
-    if (isNewLayout) {
-      newAllLayouts[currentBreakpoint] = newAllLayouts[currentBreakpoint].map((item) => ({
-        ...item,
-        ...(props.defaultItemLayout ?? {}),
-      }));
-    }
+  const onLayoutChange = (layout: ReactGridLayout.Layout[], newAllLayouts: ReactGridLayout.Layouts) => {
     setAllLayouts(newAllLayouts);
     debouncedOnChange(newAllLayouts);
   };
@@ -54,22 +48,19 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
 
   return (
     <ParentWidgetContext.Provider value={props.parentWidget}>
-      <SizeMe>
+      <SizeMe refreshRate={500}>
         {({ size }) =>
           size.width ? (
             <Responsive
               draggableHandle=".flowtiwi-sidebar-tab-handle"
-              width={size.width}
+              width={Math.floor(size.width)}
               className="layout tc-sidebar-tabs-main"
               onLayoutChange={onLayoutChange}
-              onBreakpointChange={(breakpoint, _newCols) => {
-                setCurrentBreakpoint(breakpoint);
-              }}
               layouts={allLayouts}
               isBounded
-              breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-              cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-              margin={[0, 0]}
+              breakpoints={defaultBreakpoints}
+              cols={defaultCols}
+              margin={defaultMargin}
               autoSize>
               {gridChildren}
             </Responsive>
