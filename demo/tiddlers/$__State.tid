@@ -1,0 +1,233 @@
+created: 20220312163059497
+creator: 林一二
+modified: 20220312163109352
+modifier: 林一二
+title: $:/plugins/linonetwo/flowtiwi-sidebar/state
+type: application/json
+
+{
+    "xxs": [
+        {
+            "w": 2,
+            "h": 1,
+            "x": 0,
+            "y": 0,
+            "i": "$:/core/ui/SideBar/Open",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 1,
+            "x": 0,
+            "y": 1,
+            "i": "$:/core/ui/SideBar/Recent",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 1,
+            "x": 0,
+            "y": 2,
+            "i": "$:/core/ui/SideBar/Tools",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 1,
+            "x": 2,
+            "y": 0,
+            "i": "$:/core/ui/SideBar/More",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 4,
+            "x": 2,
+            "y": 1,
+            "i": "$:/plugins/linonetwo/itonnote/Sidebar/FolderMenu",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 3,
+            "x": 0,
+            "y": 3,
+            "i": "$:/plugins/linonetwo/itonnote/Sidebar/Locator Fields",
+            "moved": false,
+            "static": false
+        }
+    ],
+    "xs": [
+        {
+            "w": 2,
+            "h": 1,
+            "x": 0,
+            "y": 2,
+            "i": "$:/core/ui/SideBar/Open",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 1,
+            "x": 0,
+            "y": 0,
+            "i": "$:/core/ui/SideBar/Recent",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 1,
+            "x": 0,
+            "y": 1,
+            "i": "$:/core/ui/SideBar/Tools",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 3,
+            "x": 2,
+            "y": 0,
+            "i": "$:/core/ui/SideBar/More",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 3,
+            "x": 0,
+            "y": 3,
+            "i": "$:/plugins/linonetwo/itonnote/Sidebar/FolderMenu",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 4,
+            "h": 2,
+            "x": 0,
+            "y": 6,
+            "i": "$:/plugins/linonetwo/itonnote/Sidebar/Locator Fields",
+            "moved": false,
+            "static": false
+        }
+    ],
+    "sm": [
+        {
+            "w": 2,
+            "h": 1,
+            "x": 0,
+            "y": 0,
+            "i": "$:/core/ui/SideBar/Open",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 1,
+            "x": 2,
+            "y": 0,
+            "i": "$:/core/ui/SideBar/Recent",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 3,
+            "x": 0,
+            "y": 1,
+            "i": "$:/core/ui/SideBar/Tools",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 2,
+            "x": 3,
+            "y": 1,
+            "i": "$:/core/ui/SideBar/More",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 4,
+            "h": 4,
+            "x": 0,
+            "y": 4,
+            "i": "$:/plugins/linonetwo/itonnote/Sidebar/FolderMenu",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 1,
+            "x": 4,
+            "y": 0,
+            "i": "$:/plugins/linonetwo/itonnote/Sidebar/Locator Fields",
+            "moved": false,
+            "static": false
+        }
+    ],
+    "md": [
+        {
+            "w": 2,
+            "h": 1,
+            "x": 3,
+            "y": 0,
+            "i": "$:/core/ui/SideBar/Open",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 3,
+            "x": 0,
+            "y": 0,
+            "i": "$:/core/ui/SideBar/Recent",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 6,
+            "h": 4,
+            "x": 0,
+            "y": 3,
+            "i": "$:/core/ui/SideBar/Tools",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 1,
+            "x": 3,
+            "y": 1,
+            "i": "$:/core/ui/SideBar/More",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 6,
+            "h": 3,
+            "x": 0,
+            "y": 7,
+            "i": "$:/plugins/linonetwo/itonnote/Sidebar/FolderMenu",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 1,
+            "x": 7,
+            "y": 0,
+            "i": "$:/plugins/linonetwo/itonnote/Sidebar/Locator Fields",
+            "moved": false,
+            "static": false
+        }
+    ]
+}
