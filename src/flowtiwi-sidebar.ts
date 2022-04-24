@@ -20,6 +20,10 @@ class FlowTiWiWidget extends Widget<IMultiColumnProps> {
   }
 
   refresh(changedTiddlers: IChangedTiddlers) {
+    const sidebarClosed = $tw.wiki.getTiddlerText('$:/state/sidebar') === 'no';
+    if (sidebarClosed) {
+      return false;
+    }
     return this.refreshChildren(changedTiddlers);
   }
 
