@@ -9,6 +9,7 @@ import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import { SideBarContent } from './content';
 import { ParentWidgetContext } from 'tw-react';
+import { DEBOUNCE_UPDATE_INTERVAL } from 'src/config';
 
 const defaultBreakpoints = { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 };
 const defaultCols = { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 };
@@ -48,7 +49,7 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
 
   return (
     <ParentWidgetContext.Provider value={props.parentWidget}>
-      <SizeMe refreshRate={500}>
+      <SizeMe refreshRate={DEBOUNCE_UPDATE_INTERVAL / 2}>
         {({ size }) =>
           size.width ? (
             <Responsive

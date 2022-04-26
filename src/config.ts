@@ -1,0 +1,1 @@
+export const DEBOUNCE_UPDATE_INTERVAL = 2000;

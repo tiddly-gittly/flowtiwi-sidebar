@@ -4,15 +4,14 @@ import debounce from 'lodash/debounce';
 
 import { IMultiColumnProps, MultiColumn } from './components/multi-column';
 import './style.css';
+import { DEBOUNCE_UPDATE_INTERVAL } from './config';
 
 const Widget = (require('$:/plugins/linonetwo/tw-react/widget.js') as { widget: IReactWidget }).widget;
-
-const DEBOUNCE_UPDATE_INTERVAL = 2000;
 
 class FlowTiWiWidget extends Widget<IMultiColumnProps> {
   constructor(parseTreeNode: any, options: any) {
     super(parseTreeNode, options);
-    const debouncedRefresh = debounce(this.refresh.bind(this), DEBOUNCE_UPDATE_INTERVAL);
+    const debouncedRefresh = debounce(this.refresh.bind(this), DEBOUNCE_UPDATE_INTERVAL * 1.5);
     this.refresh = (changedTiddlers: IChangedTiddlers) => {
       debouncedRefresh(changedTiddlers);
       return true;
