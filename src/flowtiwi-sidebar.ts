@@ -33,7 +33,7 @@ class FlowTiWiWidget extends Widget<IMultiColumnProps> {
     const onChange = (newLayouts: ReactGridLayout.Layouts) => {
       $tw.wiki.setTiddlerData(stateTiddler, newLayouts);
     };
-    return { layouts, onChange, defaultItemLayout: { w: 2 }, parentWidget: this };
+    return { layouts, onChange, defaultItemLayout: { w: 2 } };
   };
 }
 

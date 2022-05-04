@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useFilter } from 'tw-react';
 import { SizeMe } from 'react-sizeme';
 import { Tiddler, Widget } from 'tiddlywiki';
@@ -28,6 +28,43 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
     setAllLayouts(newAllLayouts);
     debouncedOnChange(newAllLayouts);
   };
+  const onClick = useCallback(
+    (event: React.MouseEvent, to: string) => {
+      if (!props.parentWidget) return;
+      // const domNode = attributes.ref.current as HTMLLinkElement | undefined;
+      // if (!domNode) return;
+      event.stopPropagation();
+      // const bounds = domNode.getBoundingClientRect();
+      const twNavigateEvent = {
+        type: 'tm-navigate',
+        navigateTo: to,
+        navigateFromTitle: props.parentWidget.getVariable('storyTiddler'),
+        navigateFromNode: props.parentWidget,
+        // navigateFromClientRect: {
+        //   top: bounds.top,
+        //   left: bounds.left,
+        //   width: bounds.width,
+        //   right: bounds.right,
+        //   bottom: bounds.bottom,
+        //   height: bounds.height,
+        // },
+        // navigateFromClientTop: bounds.top,
+        // navigateFromClientLeft: bounds.left,
+        // navigateFromClientWidth: bounds.width,
+        // navigateFromClientRight: bounds.right,
+        // navigateFromClientBottom: bounds.bottom,
+        // navigateFromClientHeight: bounds.height,
+        navigateSuppressNavigation: event.metaKey || event.ctrlKey || event.button === 1,
+        metaKey: event.metaKey,
+        ctrlKey: event.ctrlKey,
+        altKey: event.altKey,
+        shiftKey: event.shiftKey,
+        event: event.nativeEvent,
+      };
+      props.parentWidget.dispatchEvent(twNavigateEvent);
+    },
+    [props.parentWidget],
+  );
   const sidebarTabTitles = useFilter('[all[shadows+tiddlers]tag[$:/tags/SideBar]!has[draft.of]]');
   const gridChildren = useMemo(
     () =>
@@ -39,12 +76,14 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
         });
         return (
           <div key={title}>
-            <div className="flowtiwi-sidebar-tab-handle">{renderedCaption}</div>
+            <div className="flowtiwi-sidebar-tab-handle" >
+              <span className="flowtiwi-sidebar-tab-handle-title" onClick={(event) => onClick(event, title)}>{renderedCaption}</span>
+            </div>
             <SideBarContent title={title} />
           </div>
         );
       }),
-    [sidebarTabTitles],
+    [sidebarTabTitles, onClick],
   );
 
   return (
