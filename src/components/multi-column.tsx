@@ -33,6 +33,7 @@ export function MultiColumn(props: IMultiColumnProps): JSX.Element {
       if (!props.parentWidget) return;
       // const domNode = attributes.ref.current as HTMLLinkElement | undefined;
       // if (!domNode) return;
+      event.preventDefault();
       event.stopPropagation();
       // const bounds = domNode.getBoundingClientRect();
       const twNavigateEvent = {
