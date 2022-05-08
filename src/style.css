@@ -8,6 +8,18 @@
   overflow: auto;
   overflow: overlay;
 }
+/** remove default sidebar's some style */
+.tc-sidebar-header .tc-sidebar-lists p {
+  margin: 0;
+}
+/** these layers are generated, make sure they fit the height, so content using height 100% can fit the block without scrollbar */
+.flowtiwi-sidebar-tab-content > div,
+.flowtiwi-sidebar-tab-content > div > div,
+.flowtiwi-sidebar-tab-content > div > div > p {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 .flowtiwi-sidebar-tab-handle {
   user-select: none;
   cursor: grabbing;
